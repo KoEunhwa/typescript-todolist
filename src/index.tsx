@@ -3,11 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {Provider}from 'react-redux';
+import {applyMiddleware, createStore} from 'redux';
+import rootReducer from  './modules';
+
+// 리덕스 미들웨어 사용하기 (리덕스썽크) applyMiddleware , Thunk
+import Thunk from 'redux-thunk';
+
+// const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(Thunk));
+
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
